@@ -11,7 +11,7 @@ So when you need a filename without any hash value, using this plugin can help y
 
 ## Installation
 
-`npm install --save-dev parcel-namer-hashless -D`
+`npm install --save-dev parcel-namer-hashless`
 
 ## Useage
 
