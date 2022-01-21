@@ -25,7 +25,8 @@ Edit .parcelrc file to add new namer:
 }
 ```
 
-##Result
+## Result
+
 If you run the plugin successfully, the terminal will output：
 
 ```
