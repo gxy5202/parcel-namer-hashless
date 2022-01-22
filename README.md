@@ -21,7 +21,16 @@ Edit .parcelrc file to add new namer:
 /* .parcelrc */
 {
   "extends": "@parcel/config-default",
-  "namers": [ "parcel-namer-rewrite" ]
+  "namers": [ "parcel-namer-hashless" ]
+}
+```
+
+If you want to packge your index.html, make sure add "source" to your package.json:
+
+```
+/* package.json */
+{
+  "source": "src/index.html"
 }
 ```
 
