@@ -1,6 +1,6 @@
 {
     "name": "parcel-namer-hashless",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A parcel plugin that helps you remove the hash from the file name",
     "scripts": {
         "build": "babel src --out-dir lib --extensions \".ts\" && yalc push"
@@ -35,7 +35,7 @@
         "lib/index.js"
     ],
     "engines": {
-        "parcel": "^2.2.0",
+        "parcel": ">=2.2.0",
         "node": ">= 10.0.0"
     }
 }

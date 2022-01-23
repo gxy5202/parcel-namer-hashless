@@ -8,12 +8,17 @@ import defaultName from "@parcel/namer-default";
 
 const CONFIG = Symbol.for("parcel-plugin-config");
 export default new Namer({
-    async name({ bundle, bundleGraph, logger }) {
+    async name({ bundle, bundleGraph, logger, options }) {
         const oldName: string = await defaultName[CONFIG].name({
             bundle,
             bundleGraph,
             logger,
         });
+
+        // if mode is development, return file name with hash
+        if (options.mode === "development") {
+            return oldName;
+        }
 
         // if filename has hash,
         if (!bundle.needsStableName) {
