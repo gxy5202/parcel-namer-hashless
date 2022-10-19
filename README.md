@@ -34,7 +34,7 @@ If you want to packge your index.html, make sure add "source" to your package.js
 }
 ```
 
-## development
+## Development
 
 If you are running in development, hash can not be removed.
 (cause parcel need every file has a unique name);
