@@ -1,12 +1,12 @@
 {
     "name": "parcel-namer-hashless",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A parcel plugin that helps you remove the hash from the file name",
     "scripts": {
         "build": "babel src --out-dir lib --extensions \".ts\" && yalc push"
     },
     "author": "Gomi",
-    "license": "MTI",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/gxy5202/parcel-namer-hashless"
@@ -15,7 +15,8 @@
     "keywords": [
         "parcel",
         "parcel plugin",
-        "namer"
+        "namer",
+        "hash"
     ],
     "main": "lib/index.js",
     "devDependencies": {
@@ -24,12 +25,12 @@
         "@babel/plugin-transform-runtime": "^7.16.8",
         "@babel/preset-env": "^7.16.8",
         "@babel/preset-typescript": "^7.16.7",
-        "@parcel/types": "^2.2.0"
+        "@parcel/types": "^2.7.0"
     },
     "dependencies": {
         "@babel/runtime": "^7.16.7",
-        "@parcel/namer-default": "^2.2.0",
-        "@parcel/plugin": "^2.2.0"
+        "@parcel/namer-default": "^2.7.0",
+        "@parcel/plugin": "^2.7.0"
     },
     "files": [
         "lib/index.js"
