@@ -1,6 +1,6 @@
 ## Feature
 
-This plugin will help you remove the hash from a bundle file name(only support parcel v2).
+This plugin will help you remove the hash from a bundle file name(only support parcel v2.x).
 
 ## Why
 
@@ -12,6 +12,8 @@ So when you need a filename without any hash value, using this plugin can help y
 ## Installation
 
 `npm install --save-dev parcel-namer-hashless`
+
+`yarn add parcel-namer-hashless -D`
 
 ## Useage
 
@@ -25,19 +27,48 @@ Edit .parcelrc file to add new namer:
 }
 ```
 
-If you want to packge your index.html, make sure add "source" to your package.json:
+## Configuration
 
+
+`parcel-namer-hashless` exists as an optional field in package.json.
+
+If you want to remove the hash values of all filenames, ignore this field.
+
+If you want precise control over certain files, you can configure the `include` or `exclude` field
+
+`include: string[]`: The file that you want to remove the hash from
+`exclude: string[]`: The file that you don't want to remove the hash from
+
+use regular expressions
 ```
-/* package.json */
-{
-  "source": "src/index.html"
+// package.json
+
+"parcel-namer-hashless": {
+    "include": [".js$", ".css$", '.card.png$']
 }
+// or
+"parcel-namer-hashless": {
+    "exclude": [".css$"]
+}
+// or
+"parcel-namer-hashless": {
+  "include": [".js$", ".css$", '.card.png$']
+  "exclude": [".background.png$"]
+}
+ 
 ```
 
-## Development
+`mode` allows you to control which environments take effect
+`mode: 'all' | 'development' | 'production'`: `production` as default.
+```
+// package.json
 
-If you are running in development, hash can not be removed.
-(cause parcel need every file has a unique name);
+"parcel-namer-hashless": {
+    "include": [".js$", ".css$", '.card.png$'],
+    "mode": 'all'
+}
+ 
+```
 
 ## Result
 
