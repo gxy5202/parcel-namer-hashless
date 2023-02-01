@@ -36,8 +36,8 @@ If you want to remove the hash values of all filenames, ignore this field.
 
 If you want precise control over certain files, you can configure the `include` or `exclude` field
 
-`include: string[]`: The file that you want to remove the hash from
-`exclude: string[]`: The file that you don't want to remove the hash from
+- `include: string[]`: The file that you want to remove the hash from
+- `exclude: string[]`: The file that you don't want to remove the hash from
 
 use regular expressions
 ```
@@ -59,7 +59,7 @@ use regular expressions
 ```
 
 `mode` allows you to control which environments take effect
-`mode: 'all' | 'development' | 'production'`: `production` as default.
+- `mode: 'all' | 'development' | 'production'`: `production` as default.
 ```
 // package.json
 
