@@ -2,6 +2,8 @@
 
 This plugin will help you remove the hash from a bundle file name(only support parcel v2.x).
 
+> Note: since v1.0.4, need your parcel >= v2.8.3
+
 ## Why
 
 If you are using parcel to package files, you may encounter the following situations.
