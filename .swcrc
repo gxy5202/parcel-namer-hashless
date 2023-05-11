@@ -1,0 +1,22 @@
+{
+    "module": {
+        "type": "commonjs"
+        // These are defaults.
+    },
+    // Enable minification
+    "minify": true,
+    // Optional, configure minifcation options
+    "jsc": {
+        "loose": true,
+        "externalHelpers": true,
+        "parser": {
+            "syntax": "typescript"
+        },
+        "minify": {
+            "compress": {
+                "unused": true
+            },
+            "mangle": true
+        }
+    }
+}
