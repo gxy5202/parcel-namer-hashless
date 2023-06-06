@@ -84,3 +84,6 @@ If you run the plugin successfully, the terminal will output：
 ```
 parcel-namer-hashless: index.794a6267.js -> index.js
 ```
+
+## Issue
+- Error: Bundles must have unique names: There is a <script> tag in your index.html file. In this case, parcel will generate a index.js file. So if you have another <script> tag to import 'main.ts', parcel will generate two index.js file. But we should notice that the first index.js file will not output as a file in your dist. So i delete your first <script> tag, then everything works fine.
