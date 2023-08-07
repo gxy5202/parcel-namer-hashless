@@ -1,3 +1,13 @@
+<h1 align="center">
+parcel-namer-hashless
+</h1>
+
+<div align="center">
+
+![](https://flat.badgen.net/npm/v/parcel-namer-hashless) ![npm](https://flat.badgen.net/npm/dm/parcel-namer-hashless) ![](https://flat.badgen.net/npm/license/parcel-namer-hashless) 
+
+</div>
+
 ## Feature
 
 This plugin will help you remove the hash from a bundle file name(only support parcel v2.x).
