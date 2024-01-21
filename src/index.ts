@@ -8,6 +8,11 @@ import defaultName from "@parcel/namer-default";
 
 const CONFIG = Symbol.for("parcel-plugin-config");
 
+type Config = {
+    namerConfig: any;
+    allNames: Array<string>;
+}
+
 enum MODE {
     ALL = "all",
     DEVELOPMENT = "development",
@@ -21,7 +26,25 @@ function matchFileName(configs, newName) {
     })
 }
 
-function buildNameWithoutHash({ bundle, oldName, logger, include, exclude }): string {
+// fixed #1: Error: Bundles must have unique names
+function checkFileNameIsUnique({ allNames, oldName, newName, logger }) {
+    if (allNames.includes(newName)) {
+        logger.warn({
+            message: `${oldName} hashless failed: file name exists`,
+        });
+        return oldName;
+    }
+
+    logger.log({
+        message: `${oldName} -> ${newName}`,
+    });
+
+    allNames.push(newName);
+
+    return newName;
+}
+
+function buildNameWithoutHash({ bundle, oldName, logger, include, exclude, allNames }): string {
     try {
         // if filename has hash,
         if (!bundle?.needsStableName) {
@@ -34,26 +57,19 @@ function buildNameWithoutHash({ bundle, oldName, logger, include, exclude }): st
             }
 
             if (matchFileName(include, newName)) {
-                logger.log({
-                    message: `${oldName} -> ${newName}`,
-                });
-                return newName;
+                return checkFileNameIsUnique({allNames, oldName, newName, logger});
             }
 
             if (Array.isArray(include)) {
                 return oldName;
             }
 
-            logger.log({
-                message: `${oldName} -> ${newName}`,
-            });
-
-            return newName;
+            return checkFileNameIsUnique({allNames, oldName, newName, logger});
         }
     } catch (err) {
         console.error(err);
     }
-    
+
     return oldName;
 }
 
@@ -63,9 +79,11 @@ export default new Namer({
 
         const namerConfig = packageJson?.['parcel-namer-hashless'];
 
+        const allNames = [];
+
         // if parcel-namer-hashless config is matched
         if (Object.prototype.toString.call(namerConfig) === '[object Object]') {
-            return Promise.resolve(namerConfig);
+            return Promise.resolve({ namerConfig, allNames } as Config);
         }
 
         return Promise.resolve({})
@@ -77,12 +95,14 @@ export default new Namer({
             logger,
         });
 
-        const { mode: configMode, include, exclude } = config;
+        const { namerConfig, allNames } = config as Config;
+
+        const { mode: configMode, include, exclude } = namerConfig;
 
         const { mode } = options;
 
         if (configMode === mode || configMode === MODE.ALL) {
-            return buildNameWithoutHash({ bundle, oldName, logger, include, exclude });
+            return buildNameWithoutHash({ bundle, oldName, logger, include, exclude, allNames });
         }
 
         if (!configMode) {
@@ -90,7 +110,7 @@ export default new Namer({
                 return oldName;
             }
 
-            return buildNameWithoutHash({ bundle, oldName, logger, include, exclude });
+            return buildNameWithoutHash({ bundle, oldName, logger, include, exclude, allNames });
         }
 
         // use default filename
