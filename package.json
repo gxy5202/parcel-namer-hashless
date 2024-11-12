@@ -1,6 +1,6 @@
 {
     "name": "parcel-namer-hashless",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "A parcel plugin that helps you remove the hash from the file name",
     "scripts": {
         "build": "npx swc ./src -d lib && yalc push"

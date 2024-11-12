@@ -84,7 +84,18 @@ use regular expressions
     "include": [".js$", ".css$", '.card.png$'],
     "mode": 'all'
 }
- 
+```
+
+`log` allows you to disable logging info.
+- `log: true | false`: `true` as default
+  
+```
+// package.json
+
+"parcel-namer-hashless": {
+    "log": false
+}
+
 ```
 
 ## Result
